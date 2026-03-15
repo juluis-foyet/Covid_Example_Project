@@ -1,0 +1,7 @@
+"0","df <- df %>% "
+"0","  filter(confirmed_case == ""Yes"") %>% "
+"0","  mutate("
+"0","    case_race = str_to_title(case_race),"
+"0","    case_eth = str_to_title(case_eth),"
+"0","    sym_myalgia = str_to_title(sym_myalgia) # The symptom analysis below revealed that the case is no consistent here."
+"0","  )"

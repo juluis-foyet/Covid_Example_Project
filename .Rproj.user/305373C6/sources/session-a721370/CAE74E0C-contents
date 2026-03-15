@@ -1,0 +1,40 @@
+df %>% 
+  mutate(
+    hosp_week = floor_date(reprt_creationdt_FALSE, unit = "week")
+  ) %>% 
+  freq_table(hosp_week, hospitalized) %>% 
+  filter(col_cat == "Yes") %>% 
+  select(row_cat, n, n_row, percent_row, lcl_row, ucl_row) %>% 
+  mutate(row_cat = ymd(row_cat)) %>% 
+  arrange(row_cat) %>% 
+  View()
+
+
+df %>% 
+  mutate(
+    hosp_week = floor_date(reprt_creationdt_FALSE, unit = "week")
+  ) %>% 
+  group_by(hosp_week, case_gender) %>% 
+  mutate(n = n()) %>% 
+  group_by(hosp_week, case_gender, n) %>% 
+  summarise(n_hospi = sum(hospitalized == "Yes", na.rm = T)) %>% 
+  mutate(perc_hospi = (n_hospi*100)/n) %>% 
+  ungroup()
+
+
+df %>%
+  group_by(case_gender) %>% 
+  nest() %>%
+  mutate(
+    freq = map(data, ~ .x %>% 
+                 mutate(
+                   hosp_week = floor_date(reprt_creationdt_FALSE, unit = "week")
+                 ) %>% 
+                 freq_table(hosp_week, hospitalized)
+    )
+  ) %>% 
+  select(-data) %>% 
+  unnest(cols = freq) %>% 
+  filter(col_cat == "Yes") %>% 
+  select(case_gender, row_cat, n, n_row, percent_row, lcl_row, ucl_row) %>% 
+  mutate(row_cat = ymd(row_cat)) 
