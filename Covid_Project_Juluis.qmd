@@ -23,6 +23,7 @@ library(readxl) # To import excel datasets
 library(tidyverse) # Data wrangling and Viz
 library(freqtables)
 library(gt)
+library(gtExtras)
 library(patchwork)
 ```
 
@@ -70,7 +71,8 @@ df %>%
   mutate(Perc_NAs = round((n_NAs*100)/nrow(df), 2)) %>% 
   gt() %>% 
   fmt_number(columns = n_NAs, use_seps = T, decimals = 0) %>% 
-  gt::as_rtf()
+  as_raw_html() %>% 
+  cat()
 ```
 
 # Demographics
