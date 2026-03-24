@@ -70,9 +70,7 @@ df %>%
   arrange(-n_NAs) %>% 
   mutate(Perc_NAs = round((n_NAs*100)/nrow(df), 2)) %>% 
   gt() %>% 
-  fmt_number(columns = n_NAs, use_seps = T, decimals = 0) %>% 
-  as_raw_html() %>% 
-  cat()
+  fmt_number(columns = n_NAs, use_seps = T, decimals = 0)
 ```
 
 # Demographics
@@ -97,8 +95,7 @@ df %>%
     fmt = ~fmt_number(., use_seps = T, decimals = 0)
   ) %>% 
   fmt_number(columns = percent, decimals = 2) %>% 
-  fmt_number(columns = n, use_seps = T, decimals = 0) %>% 
-  gt::as_rtf()
+  fmt_number(columns = n, use_seps = T, decimals = 0)
 ```
 
 ## Race
@@ -120,8 +117,7 @@ df %>%
     fmt = ~fmt_number(., use_seps = T, decimals = 0)
   ) %>% 
   fmt_number(columns = percent, decimals = 2) %>% 
-  fmt_number(columns = n, use_seps = T, decimals = 0) %>% 
-  gt::as_rtf()
+  fmt_number(columns = n, use_seps = T, decimals = 0)
 ```
 
 ## Ethnicity
@@ -143,8 +139,7 @@ df %>%
     fmt = ~fmt_number(., use_seps = T, decimals = 0)
   ) %>% 
   fmt_number(columns = percent, decimals = 2) %>% 
-  fmt_number(columns = n, use_seps = T, decimals = 0) %>% 
-  gt::as_rtf()
+  fmt_number(columns = n, use_seps = T, decimals = 0)
 ```
 
 ## Age
@@ -210,8 +205,7 @@ race_eth_gender %>%
   tab_spanner(
     label = "Case Gender",
     columns = Female:Unknown
-  ) %>% 
-  gt::as_rtf()
+  )
 ```
 
 ```{r}
@@ -291,8 +285,7 @@ names(df %>%
   tab_spanner(
     label = "Symptom Occurrence",
     columns = No:Yes
-  ) %>% 
-  gt::as_rtf()
+  )
 ```
 
 ## By Gender
@@ -330,8 +323,7 @@ symp_by_gender %>%
   tab_spanner(
     label = "Symptom Occurrence",
     columns = No:Yes
-  ) %>% 
-  gt::as_rtf()
+  )
 ```
 
 From the table above and the graph below, the prevalence of headache, loss of taste/smell and sore throat seems higher in females, while fever seems more prevalent in males. The prevalences of cough and myalgia differ by less than 1% between both genders. These results need to be perceived carefully, since about 1-3% of cases have unknown symptom status, talkless of about 39-62% of participants having missing values for symptom status.
@@ -381,8 +373,7 @@ c("hospitalized", "died", "died_covid") %>%
   tab_spanner(
     label = "Outcome Occurrence",
     columns = No:Yes
-  ) %>% 
-  gt::as_rtf()
+  )
 
 ```
 
@@ -417,8 +408,7 @@ out_by_gender %>%
   tab_spanner(
     label = "Outcome Occurrence",
     columns = No:Yes
-  ) %>% 
-  gt::as_rtf()
+  )
 ```
 
 From the table and the graph, a greater proportion of male cases died from covid or another cause. A greater proportion of males got hospitalized too.
@@ -463,8 +453,7 @@ tibble(
     Floored_Date = floor_date(Original_Date, unit = "week")
   ) %>% 
   gt() %>% 
-  fmt_date(date_style = "wday_day_month_year") %>% 
-  gt::as_rtf()
+  fmt_date(date_style = "wday_day_month_year")
 ```
 
 ## Hospitalization
